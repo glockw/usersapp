@@ -1,12 +1,12 @@
 import React from "react";
 
 import User from "./User";
-const Users = ({users}) => {
+const Users = ({ users }) => {
   const style = {
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
-    marginTop:"10rem",
+    marginTop: "10rem",
   };
   return (
     <div style={style}>

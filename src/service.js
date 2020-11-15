@@ -1,4 +1,4 @@
-const get = (page, setUser) => {
+const getUsers = (page, setUser) => {
   fetch(`https://randomuser.me/api/?page=${page}&results=9&seed=abc`)
     .then((response) => response.json())
     .then((users) => {
@@ -8,18 +8,21 @@ const get = (page, setUser) => {
 
 const cleanAndSet = ({ results }) => {
   const us = results.map(
-    ({ name, dob: { date }, picture: { medium }, email, gender }) => {
-      const { first, last } = name;
-      return {
-        name: [first, last].join(" "),
-        picture: medium,
-        dob: date,
-        gender: gender,
-        email: email,
-      };
-    }
+    ({
+      name: { first, last },
+      dob: { date },
+      picture: { medium },
+      email,
+      gender,
+    }) => ({
+      name: [first, last].join(" "),
+      picture: medium,
+      dob: date,
+      gender: gender,
+      email: email,
+    })
   );
   return us;
 };
 
-export default get;
+export default getUsers;

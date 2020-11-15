@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     getUsers(page, userClousure(users));
-  }, [page, users]);
+  }, [page], userClousure);
 
   return (
     <div className="container" onScroll={handleScroll}>

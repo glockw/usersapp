@@ -4,13 +4,14 @@ import User from "./User";
 const Users = ({users}) => {
   const style = {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     flexWrap: "wrap",
+    marginTop:"10rem",
   };
   return (
     <div style={style}>
-      {users.map((user) => (
-        <User key={user.email} user={user} />
+      {users.map((user, index) => (
+        <User key={user.email + index} user={user} />
       ))}
     </div>
   );

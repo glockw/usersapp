@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable no-undef */
+import React, { useEffect, useState } from "react";
+
+import "./App.css";
+import Users from "./users/Users";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [users, setUsers] = useState([]);
+
+  const cleanAndSet = ({ results }) => {
+    const us = results.map(
+      ({ name, dob: { date }, picture: { medium }, email, gender }) => {
+        const { first, last } = name;
+        return {
+          name: [first, last].join(" "),
+          picture: medium,
+          dob: date,
+          gender: gender,
+          email: email,
+        };
+      }
+    );
+    setUsers(us);
+  };
+  useEffect(() => {
+    fetch("https://randomuser.me/api/?page=1&results=5&seed=abc")
+      .then((response) => response.json())
+      .then(cleanAndSet);
+    // Actualiza el título del documento usando la API del navegador
+  },[]);  
+
+  return <Users users={users} />;
 }
 
 export default App;

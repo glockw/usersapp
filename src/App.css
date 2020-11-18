@@ -1,5 +1,5 @@
-
-html, body {
+html,
+body {
   font-size: 100%;
   margin: 0;
   background-color: #999;
@@ -13,7 +13,6 @@ html, body {
   overflow-y: scroll;
 }
 
-
 .loader h3 {
   width: 100%;
   color: lightblue;
@@ -24,3 +23,8 @@ html, body {
   text-align: center;
 }
 
+@media (max-width: 600px) {
+  .container {
+    margin-top: 3rem;
+  }
+}

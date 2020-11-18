@@ -21,8 +21,8 @@ function App() {
   useEffect(() => {
     const observer = new IntersectionObserver(handleObserver, {
       root: null,
-      rootMargin: "0px 0px 30px 0px",
-      threshold: 1.0,
+      rootMargin: "0px",
+      threshold: 0.5,
     });
     const { current } = loader;
     if (current) {

@@ -10,9 +10,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 5rem;
   }
 
+  
   .card {
+    margin-right: 0;
+    margin-bottom: 8rem;
     width: 80%;
   }
 }

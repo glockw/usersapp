@@ -7,8 +7,10 @@ body {
 }
 
 .container {
-  width: 90%;
+  width: 100%;
   margin: 10rem auto;
+  padding-right: 10rem;
+  padding-left: 10rem;
   box-sizing: border-box;
   overflow-y: scroll;
 }

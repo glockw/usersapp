@@ -10,16 +10,24 @@ const cleanAndSet = ({ results }) => {
   const us = results.map(
     ({
       name: { first, last },
-      dob: { date },
-      picture: { medium },
+      dob: { date, age },
+      picture: { large },
       email,
       gender,
+      location,
+      city,
+      state,
+      country,
+      nat,
     }) => ({
       name: [first, last].join(" "),
-      picture: medium,
-      dob: date,
+      picture: large,
+      dob: { date, age },
+      age: age,
       gender: gender,
       email: email,
+      address: { ...location, city, state, country },
+      nat: nat,
     })
   );
   return us;

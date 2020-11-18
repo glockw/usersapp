@@ -1,19 +1,87 @@
-
-import './user.css'
-const User = ({user:{ name, dob, gender, picture }}) => {
-
+import "./user.css";
+import moment from "moment";
+const User = ({ user }) => {
   return (
     <div className="card">
-      <div className="img">
-        <img className="profile-img" src={picture} alt="user info" />
-      </div>
-      <div className="info">
-        <h2 className="profile-heading">{name}</h2>
-        <p>{dob}</p>
-        <p>{gender}</p>
-      </div>
+      <Avatar picture={user.picture} alt={user.name} />
+      <UserDetail user={user} />
     </div>
   );
 };
 
 export default User;
+
+const Avatar = ({ picture, alt }) => {
+  return (
+    <div className="img">
+      <img className="profile-img" src={picture} alt={alt} />
+    </div>
+  );
+};
+
+const UserDetail = ({
+  user: {
+    name,
+    dob,
+    gender,
+    address: { country },
+    nat,
+  },
+}) => {
+  return (
+    <div className="info-detail">
+      <section className="section">
+        <h2 className="profile-heading">{name}</h2>
+      </section>
+
+      <Age dob={dob} />
+      <Gender gender={gender} />
+    </div>
+  );
+};
+
+const Age = ({ dob: { date, age } }) => {
+  return (
+    <section className="section">
+      <div className="sub-section">
+        <h3> Age: </h3>
+        <p> {age}</p>
+      </div>
+      <div className="sub-section">
+        <h3>Dob:</h3>
+        <p>{new moment(date).format("ll")}</p>
+      </div>
+    </section>
+  );
+};
+const Gender = ({ gender }) => {
+  const genderClass = `fas fa-${
+    gender === "female" ? "venus female" : "mars male"
+  }`;
+  return (
+    <section className="section">
+      <div className="sub-section">
+        <h3>Gender:</h3>
+        <i className={genderClass}></i>
+      </div>
+    </section>
+  );
+};
+
+const Location = ({ country, nat }) => {
+  return (
+    <section className="address">
+      <h3>
+        Location <i class="fas fa-location"></i>
+      </h3>
+      <div className="nat">
+        <p className="address-key">Nationality</p>
+        <p className="address-value">{nat}</p>
+      </div>
+      <div className="country">
+        <p className="address-key">Country</p>
+        <p className="address-value">{country}</p>
+      </div>
+    </section>
+  );
+};

@@ -19,21 +19,12 @@ const Avatar = ({ picture, alt }) => {
   );
 };
 
-const UserDetail = ({
-  user: {
-    name,
-    dob,
-    gender,
-    address: { country },
-    nat,
-  },
-}) => {
+const UserDetail = ({ user: { name, dob, gender } }) => {
   return (
     <div className="info-detail">
       <section className="section">
         <h2 className="profile-heading">{name}</h2>
       </section>
-
       <Age dob={dob} />
       <Gender gender={gender} />
     </div>
@@ -63,24 +54,6 @@ const Gender = ({ gender }) => {
       <div className="sub-section">
         <h3>Gender:</h3>
         <i className={genderClass}></i>
-      </div>
-    </section>
-  );
-};
-
-const Location = ({ country, nat }) => {
-  return (
-    <section className="address">
-      <h3>
-        Location <i class="fas fa-location"></i>
-      </h3>
-      <div className="nat">
-        <p className="address-key">Nationality</p>
-        <p className="address-value">{nat}</p>
-      </div>
-      <div className="country">
-        <p className="address-key">Country</p>
-        <p className="address-value">{country}</p>
       </div>
     </section>
   );

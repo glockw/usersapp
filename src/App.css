@@ -12,7 +12,8 @@ body {
   padding-right: 10rem;
   padding-left: 10rem;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow-y: hidden;
+  
 }
 
 .loader h3 {

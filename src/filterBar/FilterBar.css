@@ -41,4 +41,16 @@
   font-size: 2rem;
   color: goldenrod;
 }
-  
+
+
+@media(max-width:600px){
+  .form {
+    flex-direction: column;
+  }
+  .input {
+    margin-bottom: 0.5rem;
+  }
+  .gender {
+    width:30 rem;
+  }
+}

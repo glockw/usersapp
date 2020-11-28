@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API_URL = "`https://randomuser.me/api/";
+const BASE_API_URL = "https://randomuser.me/api/";
 const client = axios.create({
   baseURL: BASE_API_URL,
   headers: {

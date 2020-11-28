@@ -4,8 +4,8 @@ export function fetchUsers() {
   return (dispatch, getState) => {
     const { page } = getState().users;
     api
-      .fetchUsers(page + 1)
-      .then((resp) => dispatch(fetchUsersSucceeded(resp)));
+      .fetchUsers(page)
+      .then((resp) => dispatch(fetchUsersSucceeded(resp.data)))
   };
 }
 
@@ -20,7 +20,7 @@ const fetchUsersSucceeded = (data) => {
   };
 };
 
-const clean = (results) => {
+const clean = ({results}) => {
   const us = results.map(
     ({
       name: { first, last },

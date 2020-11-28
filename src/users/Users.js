@@ -2,10 +2,10 @@ import React from "react";
 
 import User from "../user/User";
 import "./users.css";
-const Users = ({ users }) => {
+const Users = (prop) => {
   return (
     <div className="users-list">
-      {users.map((user, index) => (
+      {prop.users.map((user, index) => (
         <User key={user.email + index} user={user} />
       ))}
     </div>

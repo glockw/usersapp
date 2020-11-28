@@ -1,27 +1,28 @@
 /* eslint-disable no-undef */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { connect } from "react-redux";
+import { fetchUsers } from "./action";
 import "./App.css";
-import Users from "./users/Users";
-import getUsers from "./service";
 import FilterBar from "./filterBar/FilterBar";
+import Users from "./users/Users";
 
-function App() {
-  const [users, setUsers] = useState([]);
+function mapStateToProps(state) {
+  const { page, users } = state.users;
+  return { page, users };
+}
 
-  const userClousure = (prev) => (recent) => setUsers([...prev, ...recent]);
+function App({ users, dispatch }) {
   const loader = useRef(null);
-  const [page, setPage] = useState(0);
   const [filter, setFilter] = useState({ name: null, gender: "none" });
 
   const handleObserver = (entities) => {
     const target = entities[0];
     if (target.isIntersecting) {
-      setPage((page) => page + 1);
+      dispatch(fetchUsers());
     }
   };
 
-
-  const loadFiler = ({ name, gender }) =>
+  const loadFilter = ({ name, gender }) =>
     (name.toLowerCase().indexOf(filter.name?.toLowerCase()) >= 0 ||
       filter.name == null) &&
     (filter.gender === "none" || filter.gender === gender);
@@ -38,14 +39,10 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    getUsers(page, userClousure(users));
-  }, [page]);
-
   return (
     <div className="container">
       <FilterBar filter={setFilter} />
-      <Users users={users.filter(loadFiler)} />
+      <Users users={users.filter(loadFilter)} />
 
       <div ref={loader} className="loader">
         <h3>Loading...</h3>
@@ -54,4 +51,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
